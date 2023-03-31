@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('id_prod');
             $table->string('name',80);
-            $table->float('weight');
+            $table->float('weigth');
             $table->string('bar_code',12);
             $table->float('value');
             $table->boolean('status')->default(1);

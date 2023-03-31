@@ -37,7 +37,7 @@
                     {{ __('Ainda não registrado?') }}
                 </a>
 
-            <x-primary-button class="ml-3">
+            <x-primary-button class="ml-3" type="submit">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

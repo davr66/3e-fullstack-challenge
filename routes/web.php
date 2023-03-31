@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $products = Product::all();
+    return view('dashboard',['products'=>$products]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -39,4 +41,6 @@ require __DIR__.'/auth.php';
 Route::prefix('product')->group(function(){
     Route::get('/cadastro',[ProductController::class,'cadastro'])->middleware(['auth', 'verified'])->name('products-cad');
     Route::post('/cadastro',[ProductController::class,'store'])->middleware(['auth', 'verified'])->name('products-cad.add');
+    Route::post('/deletar',[ProductController::class,'deleteMultiple'])->middleware(['auth', 'verified'])->name('products-deleteM');
+    Route::get('/{$id?}/mudarStatus',[ProductController::class,'mudarStatus'])->middleware(['auth', 'verified'])->name('products-onOff');
 });
