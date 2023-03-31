@@ -66,11 +66,13 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id){
+        $weigth = str_replace(',','.',$request->weigth); 
+        $value = str_replace(',','.',$request->value);
         $data = [
             'name' => $request->name,
-            'weigth' => $request->weigth,
+            'weigth' => $weigth,
             'bar_code' => $request->bar_code,
-            'value' => $request->value
+            'value' => $value
         ];
 
         Product::where('id_prod',$id)->update($data);
