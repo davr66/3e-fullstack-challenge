@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,5 +43,7 @@ Route::prefix('product')->group(function(){
     Route::get('/cadastro',[ProductController::class,'cadastro'])->middleware(['auth', 'verified'])->name('products-cad');
     Route::post('/cadastro',[ProductController::class,'store'])->middleware(['auth', 'verified'])->name('products-cad.add');
     Route::post('/deletar',[ProductController::class,'deleteMultiple'])->middleware(['auth', 'verified'])->name('products-deleteM');
-    Route::get('/{$id?}/mudarStatus',[ProductController::class,'mudarStatus'])->middleware(['auth', 'verified'])->name('products-onOff');
+    Route::get('/{id}/mudar',[ProductController::class,'mudarStatus'])->middleware(['auth', 'verified'])->name('products-onOff');
+    Route::get('/{id}/edit',[ProductController::class,'edit'])->middleware(['auth', 'verified'])->name('products-edit');
+    Route::put('/{id}',[ProductController::class,'update'])->name('products-update');
 });
